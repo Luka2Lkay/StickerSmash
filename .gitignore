@@ -9,9 +9,9 @@ dist/
 web-build/
 expo-env.d.ts
 
-.claude
+.claude/
 .vscode/
-
+git push -u origin main
 # Native
 .kotlin/
 *.orig.*
