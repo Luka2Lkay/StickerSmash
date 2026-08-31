@@ -10,6 +10,7 @@ type Props = {
 
 export default function Button({ label, theme, onPress }: Props) {
 
+    // button style if it has a primary theme
     if (theme === 'primary') {
         return (
             <View
