@@ -11,6 +11,8 @@ export default function Index() {
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined)
 
+  // Select image from your local files
+
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ["images"],
