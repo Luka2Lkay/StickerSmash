@@ -6,6 +6,7 @@ import IconButton from "@/components/icon-button";
 import ImageViewer from "@/components/image-viewer";
 import EmojiSticker from "@/components/emoji-sticker";
 import * as ImagePicker from "expo-image-picker";
+import * as MediaLibrary from "expo-media-library"
 import { useState, useEffect, useRef } from "react";
 import { captureRef } from "react-native-view-shot"
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
@@ -58,7 +59,17 @@ export default function Index() {
   }
 
   const onSaveImageAsync = async () => {
-    // we will implement this later
+    try {
+      const localUri = await captureRef(imageRef, { height: 440, quality: 1 })
+
+      await MediaLibrary.saveToLibraryAsync(localUri)
+
+      if (localUri) {
+        alert("Saved!")
+      }
+    } catch (e) {
+      console.log(e)
+    }
   };
 
   return (
