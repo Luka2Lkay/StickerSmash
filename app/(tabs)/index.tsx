@@ -6,9 +6,10 @@ import IconButton from "@/components/icon-button";
 import ImageViewer from "@/components/image-viewer";
 import EmojiSticker from "@/components/emoji-sticker";
 import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
 
@@ -17,6 +18,14 @@ export default function Index() {
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false)
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
   const [pickedEmoji, setPickedEmoji] = useState<ImageSourcePropType | undefined>(undefined)
+  const [permissionResponse, requestPermission] = useState(ImagePicker.useMediaLibraryPermissions())
+
+  useEffect(() => {
+    if (!permissionResponse?.granted) {
+      requestPermission();
+    }
+  }, []);
+
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
