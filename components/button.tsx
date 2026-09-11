@@ -7,6 +7,7 @@ type Props = {
     theme?: "primary";
     onPress?: () => void;
 }
+// ordinary button
 
 export default function Button({ label, theme, onPress }: Props) {
     if (theme === 'primary') {
